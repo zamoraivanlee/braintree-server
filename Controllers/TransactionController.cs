@@ -14,5 +14,5 @@ public class TransactionController : ControllerBase
     public TransactionController(IBraintreeService service) => _service = service;
 
     [HttpPost]
-    public async Task<ActionResult<Transaction>> CreateTransaction(CreateTransactionDto dto) => Ok(await _service.CreateTransaction(dto.Amount, dto.Nonce, dto.DeviceData));
+    public async Task<ActionResult<Transaction>> CreateTransaction(CreateTransactionDto dto) => Ok(await _service.CreateTransaction(dto.Amount, dto.Nonce, dto.DeviceData, dto.AuthenticationId));
 }

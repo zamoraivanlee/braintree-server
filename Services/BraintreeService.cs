@@ -21,13 +21,14 @@ public class BraintreeService : IBraintreeService
         };
     }
 
-    public async Task<Transaction> CreateTransaction(decimal amount, string nonce, string deviceData)
+    public async Task<Transaction> CreateTransaction(decimal amount, string nonce, string deviceData, string authenticationId)
     {
         var request = new TransactionRequest
         {
             Amount = amount,
             PaymentMethodNonce = nonce,
             DeviceData = deviceData,
+            ThreeDSecureAuthenticationId = authenticationId,
             Options = new TransactionOptionsRequest
             {
                 SubmitForSettlement = true
@@ -46,6 +47,6 @@ public class BraintreeService : IBraintreeService
 
 public interface IBraintreeService
 {
-    Task<Transaction> CreateTransaction(decimal amount, string nonce, string deviceData);
+    Task<Transaction> CreateTransaction(decimal amount, string nonce, string deviceData, string authenticationId);
     string GetToken();
 }
